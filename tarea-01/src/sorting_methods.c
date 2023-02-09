@@ -11,6 +11,17 @@ void printList(int* lst, size_t n) {
     printf("%d]\n", *(lst + n - 1));
 }
 
+void histogram(int* lst, size_t n) {
+    if (lst == NULL) return;
+    for (int i = 0; i < (int)n; i++) {
+        int freq = *(lst + i);
+        if (freq < 0) freq = 0;  // No negative numbers...
+        printf("%3d:", freq);
+        for (int j = 0; j < freq; j++) printf("*");
+        printf("\n");
+    }
+}
+
 int* randint_list(int n, int lower, int upper) {
     if (n <= 0) return NULL;
 

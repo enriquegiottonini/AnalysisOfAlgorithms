@@ -35,6 +35,21 @@
  */
 void printList(int*, size_t);
 
+/** @brief Prints a representation of list.
+ *
+ *  Prints a list L in the form
+ *  l1: *********
+ *  l2: ****
+ *  l3: *****
+ *  ...
+ *  ln: **
+ *
+ *  @param lst Pointer to list of natural numbers.
+ *  @param n number of elements in list.
+ *  @return void
+ */
+void histogram(int*, size_t);
+
 /** @brief Creates a random list of integer.
  *
  *  Creates a random list of integers between a
@@ -58,8 +73,7 @@ int* randint_list(int, int, int);
  *  @return bool if is ordered false otherwise
  */
 bool is_ordered(int* lst, size_t n, bool (*f)());
-// TODO
-// Check if a list is ordered
+
 // print list with frecuencies
 
 // ALGORITHMS
