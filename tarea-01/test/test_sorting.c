@@ -36,6 +36,24 @@ una prueba falla.
         goto fail;                                       \
     }
 
+// Auxiliary functions
+bool leq(int x, int y) {
+    return (x <= y);
+}
+
+bool geq(int x, int y) {
+    return (x >= y);
+}
+
+int it_checks_if_ordered(void) {
+    int x[3] = {1, 2, 3};
+    check(is_ordered(x, 3, leq), "Esperaba que checara que si está ordenada.");
+    check(!(is_ordered(x, 3, geq)), "Esperaba que checara que no está ordenada.");
+    return 1;
+fail:
+    return 0;
+}
+
 int it_creates_randint_list(void) {
     int* invalid = randint_list(-10, 1, 100);
     int* invalid2 = randint_list(0, 1, 100);
@@ -62,5 +80,6 @@ fail:
 
 int main(void) {
     run_test(it_creates_randint_list);
+    run_test(it_checks_if_ordered);
     return 0;
 }

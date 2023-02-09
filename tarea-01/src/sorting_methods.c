@@ -21,6 +21,17 @@ int* randint_list(int n, int lower, int upper) {
     return lst;
 }
 
+bool is_ordered(int* lst, size_t n, bool (*f)()) {
+    if (lst == NULL) return false;
+
+    for (int i = 0; i < (int)n - 1; i++) {
+        int curr = *(lst + i);
+        int next = *(lst + i + 1);
+        if (!(f(curr, next))) return false;
+    }
+    return true;
+}
+
 int* selection_sort(int* lst, size_t n, void (*f)()) {
     int* new_lst = (int*)malloc(n * sizeof(int));
     for (int i = 0; i < (int)n; i++) {

@@ -47,6 +47,17 @@ void printList(int*, size_t);
  */
 int* randint_list(int, int, int);
 
+/** @brief check that a list is ordered via afunction f
+ *
+ *  For every e_i element from a list check that
+ *  the function satisfies f(e_i, e_{i+1})
+ *  @param int* pointer to list
+ *  @param size_t number of elements in list
+ *  @param bool(*f) pointer to a function that takes two arguments and returns a bool
+ *
+ *  @return bool if is ordered false otherwise
+ */
+bool is_ordered(int* lst, size_t n, bool (*f)());
 // TODO
 // Check if a list is ordered
 // print list with frecuencies
