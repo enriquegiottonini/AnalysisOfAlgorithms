@@ -54,9 +54,39 @@ int it_selection_sort() {
     free(lst);
     if (ordered != NULL) free(ordered);
     return 1;
+
 fail:
     free(lst);
     if (ordered != NULL) free(ordered);
+    return 0;
+}
+
+int it_insertion_sort() {
+    size_t n = 30;
+    int* lst = randint_list(n, -100, 100);
+    int* ordered = insertion_sort(lst, n, geq);
+
+    check(is_ordered(ordered, n, geq), "Esperaba que se hubiera ordenado según la función geq");
+
+    free(lst);
+    if (ordered != NULL) free(ordered);
+    return 1;
+
+fail:
+    free(lst);
+    if (ordered != NULL) free(ordered);
+    return 0;
+}
+
+int it_swaps(void) {
+    int x = 10;
+    int y = 20;
+    swap(&x, &y);
+
+    check((x == 20) && (y == 10), "Esperaba que los valores hayan sido intercambiados.");
+    return 1;
+
+fail:
     return 0;
 }
 
@@ -70,6 +100,7 @@ int it_copy_a_list(void) {
     if (x != NULL) free(x);
     if (y != NULL) free(y);
     return 1;
+
 fail:
     if (x != NULL) free(x);
     if (y != NULL) free(y);
@@ -81,6 +112,7 @@ int it_checks_if_ordered(void) {
     check(is_ordered(x, 3, leq), "Esperaba que checara que si está ordenada.");
     check(!(is_ordered(x, 3, geq)), "Esperaba que checara que no está ordenada.");
     return 1;
+
 fail:
     return 0;
 }
@@ -113,6 +145,8 @@ int main(void) {
     run_test(it_creates_randint_list);
     run_test(it_checks_if_ordered);
     run_test(it_copy_a_list);
+    run_test(it_swaps);
     run_test(it_selection_sort);
+    run_test(it_insertion_sort);
     return 0;
 }

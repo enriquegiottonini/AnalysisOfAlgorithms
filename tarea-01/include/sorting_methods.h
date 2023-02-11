@@ -29,7 +29,6 @@
 
 */
 
-// selection
 // insertion
 // merge
 
@@ -37,13 +36,13 @@
  *
  *  Returns a new list that is ordered, it does
  *  not mutate the original list.
- *  Order can be defined by a compare function as a parameter.
+ *  Order can be defined by a compare function f as a parameter.
  *
  *  best case : O(n²)
  *  worst case: O(n²)
  *
- *  Selection sort always iterate thorugh the list, selecting an
- *  element from each iteration.
+ *  Selection sort always iterate forward twice through the list, selecting the best
+ *  element that satisfies f from each iteration, incrementally sorting the list.
  *
  *  @param int* pointer to list
  *  @param size_t number of elements in list
@@ -51,6 +50,25 @@
  *  @return int* ordered list
  */
 int* selection_sort(int* lst, size_t n, bool (*f)());
+
+/** @brief implementation of insertion sort
+ *
+ *  Returns a new list that is ordered, it does
+ *  not mutate the original list.
+ *  Order can be defined by a compare function as a parameter.
+ *
+ *  best case : O(n)    when the list is already ordered.
+ *  worst case: O(n²)   when the list is ordered with the complement to the compare function f
+ *
+ *  Iterates forwards and then backwards through the list inserting an element to
+ *  an ordered sublist each iteration.
+ *
+ *  @param int* pointer to list
+ *  @param size_t number of elements in list
+ *  @param bool(*f) pointer to a compare function that takes two arguments and returns a bool
+ *  @return int* ordered list
+ */
+int* insertion_sort(int* lst, size_t n, bool (*f)());
 
 /*
   _   _ _   _ _ _ _   _
@@ -86,7 +104,7 @@ void print_list(int*, size_t);
  */
 void histogram(int*, size_t);
 
-/** @brief Creates a random list of integer.
+/** @brief Creates a random list of integers.
  *
  *  Creates a random list of integers between a
  *  lower bound and an upper bound.
@@ -98,6 +116,21 @@ void histogram(int*, size_t);
  */
 int* randint_list(int, int, int);
 
+/** @brief check that a list is ordered via a function f
+ *
+ *  For every e_i element from a list check that
+ *  the function satisfies f(e_i, e_{i+1}),
+ *  for example if f is the function that represents less than
+ *  is_ordered checks if the list satisfies that every element is
+ *  less than the next position i.e. the list has an ascending order.
+ *  @param int* pointer to list
+ *  @param size_t number of elements in list
+ *  @param bool(*f) pointer to a function that takes two arguments and returns a bool
+ *
+ *  @return bool if is ordered false otherwise
+ */
+bool is_ordered(int* lst, size_t n, bool (*f)());
+
 /** @brief copy a list
  *
  *  @param int* pointer to list
@@ -107,17 +140,14 @@ int* randint_list(int, int, int);
  */
 int* copy_list(int*, size_t);
 
-/** @brief check that a list is ordered via afunction f
+/** @brief swap the values of two variables
  *
- *  For every e_i element from a list check that
- *  the function satisfies f(e_i, e_{i+1})
- *  @param int* pointer to list
- *  @param size_t number of elements in list
- *  @param bool(*f) pointer to a function that takes two arguments and returns a bool
+ *  @param int* pointer to a variable x
+ *  @param int* pointer to a variable y
  *
- *  @return bool if is ordered false otherwise
+ *  @return void
  */
-bool is_ordered(int* lst, size_t n, bool (*f)());
+void swap(int*, int*);
 
 // PERFOMANCE
 // time a function

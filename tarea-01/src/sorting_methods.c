@@ -12,12 +12,23 @@ int* selection_sort(int* lst, size_t n, bool (*f)()) {
             if (f(current, *(ordered_lst + selected_key)))
                 selected_key = j;
         }
-        // swap i element with selected key element
-        int temp = *(ordered_lst + i);
-        *(ordered_lst + i) = *(ordered_lst + selected_key);
-        *(ordered_lst + selected_key) = temp;
+        swap(ordered_lst + i, ordered_lst + selected_key);
     }
     return ordered_lst;
+}
+
+int* insertion_sort(int* lst, size_t n, bool (*f)()) {
+    if (lst == NULL) return NULL;
+
+    int* ordered = copy_list(lst, n);
+    for (int i = 1; i < (int)n; i++) {
+        int j = i;
+        while ((j > 0) && (f(*(ordered + j), *(ordered + j - 1)))) {
+            swap(ordered + j, ordered + j - 1);
+            j--;
+        }
+    }
+    return ordered;
 }
 
 void print_list(int* lst, size_t n) {
@@ -56,16 +67,6 @@ int* randint_list(int n, int lower, int upper) {
     return lst;
 }
 
-int* copy_list(int* lst, size_t n) {
-    if (lst == NULL) return NULL;
-
-    int* new_lst = (int*)malloc(n * sizeof(int));
-    for (int i = 0; i < (int)n; i++) {
-        *(new_lst + i) = *(lst + i);
-    }
-    return new_lst;
-}
-
 bool is_ordered(int* lst, size_t n, bool (*f)()) {
     if (lst == NULL) return false;
 
@@ -77,4 +78,19 @@ bool is_ordered(int* lst, size_t n, bool (*f)()) {
         if (!(f(curr, next))) return false;
     }
     return true;
+}
+int* copy_list(int* lst, size_t n) {
+    if (lst == NULL) return NULL;
+
+    int* new_lst = (int*)malloc(n * sizeof(int));
+    for (int i = 0; i < (int)n; i++) {
+        *(new_lst + i) = *(lst + i);
+    }
+    return new_lst;
+}
+
+void swap(int* x, int* y) {
+    int temp = *x;
+    *x = *y;
+    *y = temp;
 }
