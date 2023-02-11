@@ -29,9 +29,6 @@
 
 */
 
-// insertion
-// merge
-
 /** @brief implementation of selection sort
  *
  *  Returns a new list that is ordered, it does
@@ -69,6 +66,26 @@ int* selection_sort(int* lst, size_t n, bool (*f)());
  *  @return int* ordered list
  */
 int* insertion_sort(int* lst, size_t n, bool (*f)());
+
+/** @brief merge two ordered lists
+ *
+ *  Returns a new list that is ordered, it does
+ *  not mutate the original list.
+ *  Merge two lists ordered by the same property f.
+ *
+ *  Iterates forwards and then backwards through the list inserting an element to
+ *  an ordered sublist each iteration.
+ *
+ *  @param int* pointer to list 1
+ *  @param n1 size of list 1
+ *  @param int* pointer to list 2
+ *  @param n2 size of list 2
+ *  @param bool (*f)() property of ordering, f: (x, y) -> bool
+ *
+ *  @returns  NULL is lst1 or lst2 are not ordered by f.
+ *            int* merged list otherwise.
+ */
+int* merge(int*, size_t, int*, size_t, bool (*f)());
 
 /*
   _   _ _   _ _ _ _   _
@@ -151,7 +168,8 @@ void swap(int*, int*);
 
 // PERFOMANCE
 // time a function
-// plot times?
+// new file to plot times.
+// modifie makefile
 // reporte en latex
 
 #endif
