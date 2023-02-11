@@ -45,6 +45,22 @@ bool geq(int x, int y) {
     return (x >= y);
 }
 
+int it_copy_a_list(void) {
+    size_t n = 100;
+    int* x = randint_list(n, 0, 100);
+    int* y = copy_list(x, n);
+    for (int i = 0; i < (int)n; i++) {
+        check(*(x + i) == *(y + i), "Esperaba que los valores en la posición i fueran iguales.")
+    }
+    if (x != NULL) free(x);
+    if (y != NULL) free(y);
+    return 1;
+fail:
+    if (x != NULL) free(x);
+    if (y != NULL) free(y);
+    return 0;
+}
+
 int it_checks_if_ordered(void) {
     int x[3] = {1, 2, 3};
     check(is_ordered(x, 3, leq), "Esperaba que checara que si está ordenada.");
@@ -81,5 +97,6 @@ fail:
 int main(void) {
     run_test(it_creates_randint_list);
     run_test(it_checks_if_ordered);
+    run_test(it_copy_a_list);
     return 0;
 }

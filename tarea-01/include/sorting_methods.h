@@ -17,6 +17,42 @@
 #include <time.h>     //time
 
 /*
+
+   (      (                        )    )
+   )\     )\ (  (       (   (   ( /( ( /(     )
+((((_)(  ((_))\))(  (   )(  )\  )\()))\())   (     (
+ )\ _ )\  _ ((_))\  )\ (()\((_)(_))/((_)\    )\  ' )\
+ (_)_\(_)| | (()(_)((_) ((_)(_)| |_ | |(_) _((_)) ((_)
+  / _ \  | |/ _` |/ _ \| '_|| ||  _|| ' \ | '  \()(_-<
+ /_/ \_\ |_|\__, |\___/|_|  |_| \__||_||_||_|_|_| /__/
+            |___/
+
+*/
+
+// selection
+// insertion
+// merge
+
+/** @brief implementation of selection sort
+ *
+ *  Returns a new list that is ordered, it does
+ *  not mutate the original list.
+ *  Order can be defined by a compare function as a parameter.
+ *
+ *  best case : O(n²)
+ *  worst case: O(n²)
+ *
+ *  Selection sort always iterate thorugh the list, selecting an
+ *  element from each iteration.
+ *
+ *  @param int* pointer to list
+ *  @param size_t number of elements in list
+ *  @param bool(*f) pointer to a compare function that takes two arguments and returns a bool
+ *  @return int* ordered list
+ */
+int* selection_sort(int* lst, size_t n, void (*f)());
+
+/*
   _   _ _   _ _ _ _   _
  | | | | |_(_) (_) |_(_) ___  ___
  | | | | __| | | | __| |/ _ \/ __|
@@ -33,7 +69,7 @@
  *  @param n Number of elements list
  *  @return void
  */
-void printList(int*, size_t);
+void print_list(int*, size_t);
 
 /** @brief Prints a representation of list.
  *
@@ -62,6 +98,15 @@ void histogram(int*, size_t);
  */
 int* randint_list(int, int, int);
 
+/** @brief copy a list
+ *
+ *  @param int* pointer to list
+ *  @param size_t number of elements in list
+ *
+ *  @return pointer to copy of list
+ */
+int* copy_list(int*, size_t);
+
 /** @brief check that a list is ordered via afunction f
  *
  *  For every e_i element from a list check that
@@ -73,14 +118,6 @@ int* randint_list(int, int, int);
  *  @return bool if is ordered false otherwise
  */
 bool is_ordered(int* lst, size_t n, bool (*f)());
-
-// print list with frecuencies
-
-// ALGORITHMS
-// selection
-// insertion
-// merge
-int* selection_sort(int* lst, size_t n, void (*f)());
 
 // PERFOMANCE
 // time a function
