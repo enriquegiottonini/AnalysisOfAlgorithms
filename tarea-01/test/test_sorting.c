@@ -45,6 +45,21 @@ bool geq(int x, int y) {
     return (x >= y);
 }
 
+int it_selection_sort() {
+    size_t n = 20;
+    int* lst = randint_list(n, -100, 100);
+    int* ordered = selection_sort(lst, n, leq);
+    check(is_ordered(ordered, n, leq), "Esperaba que se hubiera ordenado según la función leq");
+
+    free(lst);
+    if (ordered != NULL) free(ordered);
+    return 1;
+fail:
+    free(lst);
+    if (ordered != NULL) free(ordered);
+    return 0;
+}
+
 int it_copy_a_list(void) {
     size_t n = 100;
     int* x = randint_list(n, 0, 100);
@@ -98,5 +113,6 @@ int main(void) {
     run_test(it_creates_randint_list);
     run_test(it_checks_if_ordered);
     run_test(it_copy_a_list);
+    run_test(it_selection_sort);
     return 0;
 }

@@ -50,7 +50,7 @@
  *  @param bool(*f) pointer to a compare function that takes two arguments and returns a bool
  *  @return int* ordered list
  */
-int* selection_sort(int* lst, size_t n, void (*f)());
+int* selection_sort(int* lst, size_t n, bool (*f)());
 
 /*
   _   _ _   _ _ _ _   _

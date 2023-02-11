@@ -1,14 +1,23 @@
 #include "sorting_methods.h"
 
-int* selection_sort(int* lst, size_t n, void (*f)()) {
-    int* new_lst = (int*)malloc(n * sizeof(int));
-    for (int i = 0; i < (int)n; i++) {
-        *(lst + i) = i;
+int* selection_sort(int* lst, size_t n, bool (*f)()) {
+    if (lst == NULL) return NULL;
+
+    int* ordered_lst = copy_list(lst, n);
+    for (int i = 0; i < (int)n - 1; i++) {
+        int selected_key = i;
+        for (int j = i + 1; j < (int)n; j++) {
+            int current = *(ordered_lst + j);
+            // Update selected element if the compare function f is satisfies it.
+            if (f(current, *(ordered_lst + selected_key)))
+                selected_key = j;
+        }
+        // swap i element with selected key element
+        int temp = *(ordered_lst + i);
+        *(ordered_lst + i) = *(ordered_lst + selected_key);
+        *(ordered_lst + selected_key) = temp;
     }
-
-    f(lst, n);
-
-    return new_lst;
+    return ordered_lst;
 }
 
 void print_list(int* lst, size_t n) {
