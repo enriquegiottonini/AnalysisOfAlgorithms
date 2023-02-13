@@ -37,20 +37,14 @@ int* merge(int* lst1, size_t n1, int* lst2, size_t n2, bool (*f)()) {
 
     int* merged_lst = (int*)malloc((n1 + n2) * sizeof(int));
 
-    int i = 0;
-    int j = 1;
-    for (int k = 0; k < (int)(n1 + n2); k++) {
-        int el1 = *(lst1 + i);
-        int el2 = *(lst2 + j);
-        if (f(el2, el1)) {
-            *(merged_lst + k) = el2;
-            k++;
-            j++;
-        } else {
-            *(merged_lst + k) = el1;
-            i++;
-        }
+    for (int k = 0, i = 0, j = 0; k < (int)(n1 + n2);) {
+        // If there is elements on j to check and (no elements in i or f(j, i))
+        if ((j < (int)n2) && (i == (int)n1 || (f(lst2[j], lst1[i]))))
+            merged_lst[k++] = lst2[j++];
+        else
+            merged_lst[k++] = lst1[i++];
     }
+
     return merged_lst;
 }
 

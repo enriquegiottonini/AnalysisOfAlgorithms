@@ -125,7 +125,7 @@ void histogram(int*, size_t);
  *
  *  Creates a random list of integers between a
  *  lower bound and an upper bound.
- *  @param n Number of elements list
+ *  @param size_t Number of elements list
  *  @param lower Lower bound
  *  @param upper Number of elements list
  *

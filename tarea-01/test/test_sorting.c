@@ -78,6 +78,60 @@ fail:
     return 0;
 }
 
+int it_merges_same_size(void) {
+    // Lists with the same size
+    size_t n1 = 100;
+    int* x1 = randint_list(n1, -100, 100);
+    int* y1 = randint_list(n1, -50, 50);
+    int* x1s = insertion_sort(x1, n1, leq);
+    int* y1s = insertion_sort(y1, n1, leq);
+    int* merged = merge(x1s, n1, y1s, n1, leq);
+
+    check(is_ordered(merged, 2 * n1, leq), "Esperaba que los hubiera unido ordenadamente.");
+
+    free(x1);
+    free(y1);
+    free(x1s);
+    free(y1s);
+    free(merged);
+    return 1;
+fail:
+    free(x1);
+    free(y1);
+    free(x1s);
+    free(y1s);
+    free(merged);
+    return 0;
+}
+
+int it_merges_different_size(void) {
+    // Lists with different size
+    size_t n1 = 101;
+    size_t n2 = 50;
+    int* x1 = randint_list(n1, -100, 100);
+    int* y1 = randint_list(n2, -1000, 1000);
+    int* x1s = insertion_sort(x1, n1, geq);
+    int* y1s = insertion_sort(y1, n2, geq);
+    int* merged = merge(x1s, n1, y1s, n2, geq);
+
+    check(is_ordered(merged, n1 + n2, geq), "Esperaba que los hubiera unido ordenadamente.");
+
+    free(x1);
+    free(y1);
+    free(x1s);
+    free(y1s);
+    free(merged);
+    return 1;
+fail:
+
+    free(x1);
+    free(y1);
+    free(x1s);
+    free(y1s);
+    free(merged);
+    return 0;
+}
+
 int it_swaps(void) {
     int x = 10;
     int y = 20;
@@ -148,5 +202,7 @@ int main(void) {
     run_test(it_swaps);
     run_test(it_selection_sort);
     run_test(it_insertion_sort);
+    run_test(it_merges_same_size);
+    run_test(it_merges_different_size);
     return 0;
 }
