@@ -11,11 +11,12 @@
 #ifndef SORTING_METHODS_H
 #define SORTING_METHODS_H
 
-#include <math.h>     //floor
-#include <stdbool.h>  //bool
-#include <stdio.h>    //printf
-#include <stdlib.h>   //malloc, free, rand, srand
-#include <time.h>     //time
+#include <math.h>      //floor
+#include <stdbool.h>   //bool
+#include <stdio.h>     //printf
+#include <stdlib.h>    //malloc, free, rand, srand
+#include <sys/time.h>  //
+#include <time.h>      //time
 
 /*
 
@@ -107,6 +108,25 @@ int* merge(int*, size_t, int*, size_t, bool (*f)());
 int* merge_sort(int* lst, size_t n, bool (*f)());
 
 /*
+
+____ ____ ____ ____ ____ ____ _    ___  __   ____ ____
+| . \| __\| . \|  _\|   || . \|\/\ |  \ | \|\| __\| __\
+| __/|  ]_|  <_| _\ | . ||  <_|   \| . \|  \|| \__|  ]_
+|/   |___/|/\_/|/   |___/|/\_/|/v\/|/\_/|/\_/|___/|___/
+
+
+*/
+
+// @author K_K, Jul 27, 2015
+void time_execution(int (*f)());
+
+// PERFOMANCE
+// time a function
+// new file to plot times.
+// modifie makefile
+// reporte en latex
+
+/*
   _   _ _   _ _ _ _   _
  | | | | |_(_) (_) |_(_) ___  ___
  | | | | __| | | | __| |/ _ \/ __|
@@ -184,11 +204,5 @@ int* copy_list(int*, size_t);
  *  @return void
  */
 void swap(int*, int*);
-
-// PERFOMANCE
-// time a function
-// new file to plot times.
-// modifie makefile
-// reporte en latex
 
 #endif

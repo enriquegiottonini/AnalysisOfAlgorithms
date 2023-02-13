@@ -149,6 +149,12 @@ fail:
     return 0;
 }
 
+int it_benchmarks(void) {
+    printf("\nBenchmarking it_merges_sort: ");
+    time_execution(it_merges_sort);
+    return 1;
+}
+
 int it_swaps(void) {
     int x = 10;
     int y = 20;
@@ -222,5 +228,6 @@ int main(void) {
     run_test(it_merges_same_size);
     run_test(it_merges_different_size);
     run_test(it_merges_sort);
+    run_test(it_benchmarks);
     return 0;
 }

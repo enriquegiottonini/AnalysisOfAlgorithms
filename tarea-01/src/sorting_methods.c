@@ -1,5 +1,18 @@
 #include "sorting_methods.h"
 
+/*
+
+   (      (                        )    )
+   )\     )\ (  (       (   (   ( /( ( /(     )
+((((_)(  ((_))\))(  (   )(  )\  )\()))\())   (     (
+ )\ _ )\  _ ((_))\  )\ (()\((_)(_))/((_)\    )\  ' )\
+ (_)_\(_)| | (()(_)((_) ((_)(_)| |_ | |(_) _((_)) ((_)
+  / _ \  | |/ _` |/ _ \| '_|| ||  _|| ' \ | '  \()(_-<
+ /_/ \_\ |_|\__, |\___/|_|  |_| \__||_||_||_|_|_| /__/
+            |___/
+
+*/
+
 int* selection_sort(int* lst, size_t n, bool (*f)()) {
     if (lst == NULL) return NULL;
 
@@ -70,6 +83,38 @@ int* merge_sort(int* lst, size_t n, bool (*f)()) {
 
     return merged;
 }
+
+/*
+
+____ ____ ____ ____ ____ ____ _    ___  __   ____ ____
+| . \| __\| . \|  _\|   || . \|\/\ |  \ | \|\| __\| __\
+| __/|  ]_|  <_| _\ | . ||  <_|   \| . \|  \|| \__|  ]_
+|/   |___/|/\_/|/   |___/|/\_/|/v\/|/\_/|/\_/|___/|___/
+
+
+*/
+
+void time_execution(int (*f)()) {
+    struct timeval start, stop;
+    double secs = 0;
+
+    gettimeofday(&start, NULL);
+
+    f();
+
+    gettimeofday(&stop, NULL);
+    secs = (double)(stop.tv_usec - start.tv_usec) / 1000000 + (double)(stop.tv_sec - start.tv_sec);
+    printf("time taken %f ms\n", secs * 1000);
+}
+
+/*
+  _   _ _   _ _ _ _   _
+ | | | | |_(_) (_) |_(_) ___  ___
+ | | | | __| | | | __| |/ _ \/ __|
+ | |_| | |_| | | | |_| |  __/\__ \
+  \___/ \__|_|_|_|\__|_|\___||___/
+
+*/
 
 void print_list(int* lst, size_t n) {
     if (lst == NULL) {
