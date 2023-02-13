@@ -11,6 +11,7 @@
 #ifndef SORTING_METHODS_H
 #define SORTING_METHODS_H
 
+#include <math.h>     //floor
 #include <stdbool.h>  //bool
 #include <stdio.h>    //printf
 #include <stdlib.h>   //malloc, free, rand, srand
@@ -86,6 +87,24 @@ int* insertion_sort(int* lst, size_t n, bool (*f)());
  *            int* merged list otherwise.
  */
 int* merge(int*, size_t, int*, size_t, bool (*f)());
+
+/** @brief implementation of insertion sort
+ *
+ *  Returns a new list that is ordered, it does
+ *  not mutate the original list.
+ *  Order can be defined by a compare function as a parameter.
+ *
+ *  best case : O(nlog(n))
+ *  worst case: O(nlog(n))
+ *
+ *  Divide the list in half recursively and merge the ordered sublists.
+ *
+ *  @param int* pointer to list
+ *  @param size_t number of elements in list
+ *  @param bool(*f) pointer to a compare function that takes two arguments and returns a bool
+ *  @return int* ordered list
+ */
+int* merge_sort(int* lst, size_t n, bool (*f)());
 
 /*
   _   _ _   _ _ _ _   _

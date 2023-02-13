@@ -132,6 +132,23 @@ fail:
     return 0;
 }
 
+int it_merges_sort(void) {
+    size_t n = 100;
+    int* lst = randint_list(n, -100, 100);
+    int* ordered = merge_sort(lst, n, geq);
+
+    check(is_ordered(ordered, n, geq), "Esperaba que se hubiera ordenado según la función geq");
+
+    free(lst);
+    if (ordered != NULL) free(ordered);
+    return 1;
+
+fail:
+    free(lst);
+    if (ordered != NULL) free(ordered);
+    return 0;
+}
+
 int it_swaps(void) {
     int x = 10;
     int y = 20;
@@ -204,5 +221,6 @@ int main(void) {
     run_test(it_insertion_sort);
     run_test(it_merges_same_size);
     run_test(it_merges_different_size);
+    run_test(it_merges_sort);
     return 0;
 }

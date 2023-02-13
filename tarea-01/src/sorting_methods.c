@@ -48,6 +48,29 @@ int* merge(int* lst1, size_t n1, int* lst2, size_t n2, bool (*f)()) {
     return merged_lst;
 }
 
+int* merge_sort(int* lst, size_t n, bool (*f)()) {
+    if (lst == NULL) return NULL;
+    if (n == 1) {
+        int* el = (int*)malloc(sizeof(int));
+        el[0] = lst[0];
+        return el;
+    }
+
+    int half_size = floor(n / 2);
+    int* l1 = copy_list(lst, half_size);
+    int* l2 = copy_list(lst + half_size, n - half_size);
+    int* sorted_l1 = merge_sort(l1, half_size, f);
+    int* sorted_l2 = merge_sort(l2, n - half_size, f);
+    int* merged = merge(sorted_l1, half_size, sorted_l2, n - half_size, f);
+
+    if (l1 != NULL) free(l1);
+    if (l2 != NULL) free(l2);
+    if (sorted_l1 != NULL) free(sorted_l1);
+    if (sorted_l2 != NULL) free(sorted_l2);
+
+    return merged;
+}
+
 void print_list(int* lst, size_t n) {
     if (lst == NULL) {
         printf("[]\n");
