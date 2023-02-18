@@ -12,13 +12,18 @@ TESTFLAGS=-g3 -O3 \
 CC=gcc
 CFLAGS=-std=c18 -Wall -Wpedantic -Werror -Wextra -I$(INCDIR)/
 
-all: test
+bench: $(SRCDIR)/benchmarking.o 
+	@./$<
 
 test: $(TESTDIR)/test_sorting.o
 	@./$<
 
 $(TESTDIR)/test_sorting.o: $(TESTDIR)/test_sorting.c $(SRCDIR)/sorting_methods.o
 	@echo "Compilando casos de prueba..."
+	@$(CC) $(CFLAGS) $(TESTFLAGS) -o $@ $^
+
+$(SRCDIR)/benchmarking.o: $(SRCDIR)/benchmarking.c $(SRCDIR)/sorting_methods.o
+	@echo "Compilando el benchmarking..."
 	@$(CC) $(CFLAGS) $(TESTFLAGS) -o $@ $^
 
 $(SRCDIR)/%.o: $(SRCDIR)/%.c

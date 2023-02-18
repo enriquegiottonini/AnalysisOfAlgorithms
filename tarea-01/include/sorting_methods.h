@@ -15,8 +15,8 @@
 #include <stdbool.h>   //bool
 #include <stdio.h>     //printf
 #include <stdlib.h>    //malloc, free, rand, srand
-#include <sys/time.h>  //
-#include <time.h>      //time
+#include <sys/time.h>  //start.tv_used
+#include <time.h>      //time, gettimeofday
 
 /*
 
@@ -119,12 +119,6 @@ ____ ____ ____ ____ ____ ____ _    ___  __   ____ ____
 
 // @author K_K, Jul 27, 2015
 void time_execution(int (*f)());
-
-// PERFOMANCE
-// time a function
-// new file to plot times.
-// modifie makefile
-// reporte en latex
 
 /*
   _   _ _   _ _ _ _   _
