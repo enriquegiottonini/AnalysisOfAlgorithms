@@ -118,7 +118,7 @@ ____ ____ ____ ____ ____ ____ _    ___  __   ____ ____
 */
 
 // @author K_K, Jul 27, 2015
-void time_execution(int (*f)());
+void time_execution(void (*f)());
 
 /*
   _   _ _   _ _ _ _   _

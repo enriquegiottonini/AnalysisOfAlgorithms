@@ -94,7 +94,7 @@ ____ ____ ____ ____ ____ ____ _    ___  __   ____ ____
 
 */
 
-void time_execution(int (*f)()) {
+void time_execution(void (*f)()) {
     struct timeval start, stop;
     double secs = 0;
 

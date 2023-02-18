@@ -149,9 +149,13 @@ fail:
     return 0;
 }
 
+void merges_sort_test(void) {
+    it_merges_sort();
+}
+
 int it_benchmarks(void) {
     printf("\nBenchmarking it_merges_sort: ");
-    time_execution(it_merges_sort);
+    time_execution(merges_sort_test);
     return 1;
 }
 
@@ -228,6 +232,6 @@ int main(void) {
     run_test(it_merges_same_size);
     run_test(it_merges_different_size);
     run_test(it_merges_sort);
-    run_test(it_benchmarks);
+    // run_test(it_benchmarks);
     return 0;
 }

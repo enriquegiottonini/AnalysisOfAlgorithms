@@ -1,0 +1,22 @@
+For N=100
+Selection sort: time taken 0.058000 ms
+Insertion sort: time taken 0.046000 ms
+Merge sort:     time taken 0.451000 ms
+
+For N=1000
+Selection sort: time taken 6.410000 ms
+Insertion sort: time taken 3.853000 ms
+Merge sort:     time taken 2.684000 ms
+
+For N=10000
+Selection sort: time taken 865.708000 ms
+Insertion sort: time taken 495.007000 ms
+Merge sort:     time taken 26.987000 ms
+
+For N=100000
+Selection sort: time taken 87341.156000 ms
+Insertion sort: time taken 50222.977000 ms
+Merge sort:     time taken 300.987000 ms
+
+
+Total time taken 139271.156000 ms
