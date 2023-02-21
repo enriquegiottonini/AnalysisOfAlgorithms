@@ -1,296 +1,306 @@
+Compilando el benchmarking...
 ===========================
         SELECTION SORT
 ===========================
 Best Case:
 
 For N=1000
-time taken 8.677000 ms
+time taken 7.824000 ms
 
 For N=2000
-time taken 25.729000 ms
+time taken 25.799000 ms
 
 For N=3000
-time taken 59.994000 ms
+time taken 51.939000 ms
 
 For N=4000
-time taken 99.503000 ms
+time taken 94.820000 ms
 
 For N=5000
-time taken 185.552000 ms
+time taken 170.602000 ms
 
 For N=6000
-time taken 267.547000 ms
+time taken 270.770000 ms
 
 For N=7000
-time taken 406.628000 ms
+time taken 284.462000 ms
 
 For N=8000
-time taken 514.053000 ms
+time taken 522.975000 ms
 
 For N=9000
-time taken 666.053000 ms
+time taken 673.420000 ms
 
 For N=10000
-time taken 833.822000 ms
+time taken 830.803000 ms
+[0.007824,0.025799,0.051939,0.094820,0.170602,0.270770,0.284462,0.522975,0.673420,0.830803]
 ===========================
 Worst case:
 
 For N=1000
-time taken 7.832000 ms
+time taken 7.881000 ms
 
 For N=2000
-time taken 26.160000 ms
+time taken 28.041000 ms
 
 For N=3000
-time taken 55.114000 ms
+time taken 59.770000 ms
 
 For N=4000
-time taken 104.397000 ms
+time taken 114.162000 ms
 
 For N=5000
-time taken 199.743000 ms
+time taken 163.073000 ms
 
 For N=6000
-time taken 275.681000 ms
+time taken 264.626000 ms
 
 For N=7000
-time taken 395.687000 ms
+time taken 320.712000 ms
 
 For N=8000
-time taken 531.207000 ms
+time taken 446.152000 ms
 
 For N=9000
-time taken 672.133000 ms
+time taken 560.119000 ms
 
 For N=10000
-time taken 846.800000 ms
+time taken 743.811000 ms
+[0.007881,0.028041,0.059770,0.114162,0.163073,0.264626,0.320712,0.446152,0.560119,0.743811]
 ===========================
 Average case:
 
 For N=1000
-time taken 8.739000 ms
+time taken 8.779000 ms
 
 For N=2000
-time taken 25.876000 ms
+time taken 26.779000 ms
 
 For N=3000
-time taken 53.967000 ms
+time taken 57.631000 ms
 
 For N=4000
-time taken 108.819000 ms
+time taken 96.380000 ms
 
 For N=5000
-time taken 180.467000 ms
+time taken 159.569000 ms
 
 For N=6000
-time taken 295.634000 ms
+time taken 217.240000 ms
 
 For N=7000
-time taken 388.767000 ms
+time taken 351.367000 ms
 
 For N=8000
-time taken 560.844000 ms
+time taken 473.100000 ms
 
 For N=9000
-time taken 711.569000 ms
+time taken 637.975000 ms
 
 For N=10000
-time taken 882.476000 ms
+time taken 811.207000 ms
+[0.008779,0.026779,0.057631,0.096380,0.159569,0.217240,0.351367,0.473100,0.637975,0.811207]
 ===========================
         INSERTION SORT
 ===========================
 Best Case:
 
 For N=1000
-time taken 0.049000 ms
+time taken 0.039000 ms
 
 For N=2000
-time taken 0.075000 ms
+time taken 0.049000 ms
 
 For N=3000
-time taken 0.095000 ms
+time taken 0.094000 ms
 
 For N=4000
-time taken 0.111000 ms
+time taken 0.121000 ms
 
 For N=5000
-time taken 0.183000 ms
+time taken 0.167000 ms
 
 For N=6000
-time taken 0.153000 ms
+time taken 0.150000 ms
 
 For N=7000
-time taken 0.285000 ms
+time taken 0.210000 ms
 
 For N=8000
-time taken 0.244000 ms
+time taken 0.226000 ms
 
 For N=9000
-time taken 0.227000 ms
+time taken 0.241000 ms
 
 For N=10000
-time taken 0.276000 ms
+time taken 0.354000 ms
+[0.000039,0.000049,0.000094,0.000121,0.000167,0.000150,0.000210,0.000226,0.000241,0.000354]
 ===========================
 Worst case:
 
 For N=1000
-time taken 9.280000 ms
+time taken 8.900000 ms
 
 For N=2000
-time taken 33.026000 ms
+time taken 33.794000 ms
 
 For N=3000
-time taken 76.500000 ms
+time taken 71.148000 ms
 
 For N=4000
-time taken 147.630000 ms
+time taken 136.728000 ms
 
 For N=5000
-time taken 230.462000 ms
+time taken 230.272000 ms
 
 For N=6000
-time taken 361.654000 ms
+time taken 355.639000 ms
 
 For N=7000
-time taken 493.097000 ms
+time taken 500.821000 ms
 
 For N=8000
-time taken 656.814000 ms
+time taken 631.154000 ms
 
 For N=9000
-time taken 826.314000 ms
+time taken 836.822000 ms
 
 For N=10000
-time taken 1045.409000 ms
+time taken 1027.353000 ms
+[0.008900,0.033794,0.071148,0.136728,0.230272,0.355639,0.500821,0.631154,0.836822,1.027353]
 ===========================
 Average case:
 
 For N=1000
-time taken 5.072000 ms
+time taken 4.437000 ms
 
 For N=2000
-time taken 17.642000 ms
+time taken 18.812000 ms
 
 For N=3000
-time taken 38.402000 ms
+time taken 38.454000 ms
 
 For N=4000
-time taken 69.024000 ms
+time taken 68.145000 ms
 
 For N=5000
-time taken 115.824000 ms
+time taken 104.135000 ms
 
 For N=6000
-time taken 169.587000 ms
+time taken 161.154000 ms
 
 For N=7000
-time taken 250.457000 ms
+time taken 250.216000 ms
 
 For N=8000
-time taken 324.133000 ms
+time taken 326.638000 ms
 
 For N=9000
-time taken 414.088000 ms
+time taken 416.636000 ms
 
 For N=10000
-time taken 525.013000 ms
+time taken 531.528000 ms
+[0.004437,0.018812,0.038454,0.068145,0.104135,0.161154,0.250216,0.326638,0.416636,0.531528]
 ===========================
         MERGE SORT
 ===========================
 Best Case:
 
 For N=1000
-time taken 2.598000 ms
+time taken 2.496000 ms
 
 For N=2000
-time taken 4.788000 ms
+time taken 4.930000 ms
 
 For N=3000
-time taken 7.906000 ms
+time taken 7.453000 ms
 
 For N=4000
-time taken 10.389000 ms
+time taken 10.541000 ms
 
 For N=5000
-time taken 12.824000 ms
+time taken 12.291000 ms
 
 For N=6000
-time taken 14.980000 ms
+time taken 16.619000 ms
 
 For N=7000
-time taken 17.865000 ms
+time taken 19.261000 ms
 
 For N=8000
-time taken 20.018000 ms
+time taken 21.358000 ms
 
 For N=9000
-time taken 23.263000 ms
+time taken 22.903000 ms
 
 For N=10000
-time taken 26.108000 ms
+time taken 26.250000 ms
+[0.002496,0.004930,0.007453,0.010541,0.012291,0.016619,0.019261,0.021358,0.022903,0.026250]
 ===========================
 Worst case:
 
 For N=1000
-time taken 2.442000 ms
+time taken 2.419000 ms
 
 For N=2000
-time taken 4.807000 ms
+time taken 4.925000 ms
 
 For N=3000
-time taken 7.617000 ms
+time taken 8.016000 ms
 
 For N=4000
-time taken 9.637000 ms
+time taken 10.229000 ms
 
 For N=5000
-time taken 11.961000 ms
+time taken 12.893000 ms
 
 For N=6000
-time taken 15.355000 ms
+time taken 15.237000 ms
 
 For N=7000
-time taken 18.587000 ms
+time taken 19.167000 ms
 
 For N=8000
-time taken 20.428000 ms
+time taken 20.427000 ms
 
 For N=9000
-time taken 23.461000 ms
+time taken 22.608000 ms
 
 For N=10000
-time taken 26.797000 ms
+time taken 24.473000 ms
+[0.002419,0.004925,0.008016,0.010229,0.012893,0.015237,0.019167,0.020427,0.022608,0.024473]
 ===========================
 Average case:
 
 For N=1000
-time taken 2.668000 ms
+time taken 2.659000 ms
 
 For N=2000
-time taken 5.014000 ms
+time taken 5.136000 ms
 
 For N=3000
-time taken 7.968000 ms
+time taken 7.878000 ms
 
 For N=4000
-time taken 10.610000 ms
+time taken 13.392000 ms
 
 For N=5000
-time taken 12.644000 ms
+time taken 14.277000 ms
 
 For N=6000
-time taken 15.968000 ms
+time taken 15.182000 ms
 
 For N=7000
-time taken 18.739000 ms
+time taken 19.800000 ms
 
 For N=8000
-time taken 21.387000 ms
+time taken 21.905000 ms
 
 For N=9000
-time taken 23.361000 ms
+time taken 26.572000 ms
 
 For N=10000
-time taken 25.840000 ms
+time taken 27.609000 ms
+[0.002659,0.005136,0.007878,0.013392,0.014277,0.015182,0.019800,0.021905,0.026572,0.027609]
 
-Total time taken 16551.330000 ms
+Total time taken 15607.047000 ms

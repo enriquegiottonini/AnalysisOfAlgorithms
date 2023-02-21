@@ -20,7 +20,7 @@ int power(int base, int exp) {
     }
 }
 
-void bench(size_t N, int* list, int* (*sort_method)()) {
+double bench(size_t N, int* list, int* (*sort_method)()) {
     struct timeval start, stop;
     double secs = 0;
     printf("\nFor N=%d\n", (int)N);
@@ -31,39 +31,66 @@ void bench(size_t N, int* list, int* (*sort_method)()) {
     secs = (double)(stop.tv_usec - start.tv_usec) / 1000000 + (double)(stop.tv_sec - start.tv_sec);
     printf("time taken %f ms\n", secs * 1000);
     free(sorted);
+    return secs;
 }
 
 void bench_average_ktimes(int k, int* (*sort_method)()) {
+    float times[k];
     for (int t = 1; t < k + 1; t++) {
         size_t N = 1000 * t;
         int* random_list = randint_list(N, -N, N);
-        bench(N, random_list, sort_method);
+        float secs = bench(N, random_list, sort_method);
+        times[t - 1] = secs;
         free(random_list);
     }
+    // Print times array
+    printf("[");
+    for (int j = 0; j < k - 1; j++) {
+        printf("%f,", times[j]);
+    }
+    printf("%f]\n", times[k - 1]);
 }
 
 // already sorted list
 void bench_best_ktimes(int k, int* (*sort_method)()) {
+    float times[k];
     for (int t = 1; t < k + 1; t++) {
         size_t N = 1000 * t;
         int* random_list = randint_list(N, -N, N);
         int* sorted_list = merge_sort(random_list, N, leq);
-        bench(N, sorted_list, sort_method);
+        float secs = bench(N, sorted_list, sort_method);
+        times[t - 1] = secs;
         free(random_list);
         free(sorted_list);
     }
+
+    // Print times array
+    printf("[");
+    for (int j = 0; j < k - 1; j++) {
+        printf("%f,", times[j]);
+    }
+    printf("%f]\n", times[k - 1]);
 }
 
 // already sorted but reversed list
 void bench_worst_ktimes(int k, int* (*sort_method)()) {
+    float times[k];
     for (int t = 1; t < k + 1; t++) {
         size_t N = 1000 * t;
         int* random_list = randint_list(N, -N, N);
         int* sorted_list = merge_sort(random_list, N, geq);  // Reversed
-        bench(N, sorted_list, sort_method);
+        float secs = bench(N, sorted_list, sort_method);
+        times[t - 1] = secs;
         free(random_list);
         free(sorted_list);
     }
+
+    // Print times array
+    printf("[");
+    for (int j = 0; j < k - 1; j++) {
+        printf("%f,", times[j]);
+    }
+    printf("%f]\n", times[k - 1]);
 }
 
 int main(void) {
