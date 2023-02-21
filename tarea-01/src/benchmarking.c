@@ -9,41 +9,61 @@ bool geq(int x, int y) {
     return (x >= y);
 }
 
-void printStats(size_t N) {
+int power(int base, int exp) {
+    if (exp == 0)
+        return 1;
+    else if (exp % 2)
+        return base * power(base, exp - 1);
+    else {
+        int temp = power(base, exp / 2);
+        return temp * temp;
+    }
+}
+
+void bench(size_t N, int* list, int* (*sort_method)()) {
     struct timeval start, stop;
     double secs = 0;
-
     printf("\nFor N=%d\n", (int)N);
-    int* list = randint_list(N, -N, N);
-
-    // SELECTION SORT
     gettimeofday(&start, NULL);
-    int* selection = selection_sort(list, N, leq);
+
+    int* sorted = sort_method(list, N, leq);
     gettimeofday(&stop, NULL);
     secs = (double)(stop.tv_usec - start.tv_usec) / 1000000 + (double)(stop.tv_sec - start.tv_sec);
-    printf("Selection sort:\t");
     printf("time taken %f ms\n", secs * 1000);
+    free(sorted);
+}
 
-    // INSERTION SORT
-    gettimeofday(&start, NULL);
-    int* insertion = insertion_sort(list, N, leq);
-    gettimeofday(&stop, NULL);
-    secs = (double)(stop.tv_usec - start.tv_usec) / 1000000 + (double)(stop.tv_sec - start.tv_sec);
-    printf("Insertion sort:\t");
-    printf("time taken %f ms\n", secs * 1000);
+void bench_average_ktimes(int k, int* (*sort_method)()) {
+    for (int t = 1; t < k + 1; t++) {
+        size_t N = 1000 * t;
+        int* random_list = randint_list(N, -N, N);
+        bench(N, random_list, sort_method);
+        free(random_list);
+    }
+}
 
-    // MERGE SORT
-    gettimeofday(&start, NULL);
-    int* merge = merge_sort(list, N, leq);
-    gettimeofday(&stop, NULL);
-    secs = (double)(stop.tv_usec - start.tv_usec) / 1000000 + (double)(stop.tv_sec - start.tv_sec);
-    printf("Merge sort:\t");
-    printf("time taken %f ms\n", secs * 1000);
+// already sorted list
+void bench_best_ktimes(int k, int* (*sort_method)()) {
+    for (int t = 1; t < k + 1; t++) {
+        size_t N = 1000 * t;
+        int* random_list = randint_list(N, -N, N);
+        int* sorted_list = merge_sort(random_list, N, leq);
+        bench(N, sorted_list, sort_method);
+        free(random_list);
+        free(sorted_list);
+    }
+}
 
-    free(list);
-    free(selection);
-    free(insertion);
-    free(merge);
+// already sorted but reversed list
+void bench_worst_ktimes(int k, int* (*sort_method)()) {
+    for (int t = 1; t < k + 1; t++) {
+        size_t N = 1000 * t;
+        int* random_list = randint_list(N, -N, N);
+        int* sorted_list = merge_sort(random_list, N, geq);  // Reversed
+        bench(N, sorted_list, sort_method);
+        free(random_list);
+        free(sorted_list);
+    }
 }
 
 int main(void) {
@@ -52,10 +72,42 @@ int main(void) {
 
     gettimeofday(&start, NULL);
 
-    printStats(100);
-    printStats(1000);
-    printStats(10000);
-    printStats(100000);
+    int k = 10;
+    printf("===========================\n");
+    printf("\tSELECTION SORT\n");
+    printf("===========================\n");
+    printf("Best Case:\n");
+    bench_best_ktimes(k, selection_sort);
+    printf("===========================\n");
+    printf("Worst case:\n");
+    bench_worst_ktimes(k, selection_sort);
+    printf("===========================\n");
+    printf("Average case:\n");
+    bench_average_ktimes(k, selection_sort);
+
+    printf("===========================\n");
+    printf("\tINSERTION SORT\n");
+    printf("===========================\n");
+    printf("Best Case:\n");
+    bench_best_ktimes(k, insertion_sort);
+    printf("===========================\n");
+    printf("Worst case:\n");
+    bench_worst_ktimes(k, insertion_sort);
+    printf("===========================\n");
+    printf("Average case:\n");
+    bench_average_ktimes(k, insertion_sort);
+
+    printf("===========================\n");
+    printf("\tMERGE SORT\n");
+    printf("===========================\n");
+    printf("Best Case:\n");
+    bench_best_ktimes(k, merge_sort);
+    printf("===========================\n");
+    printf("Worst case:\n");
+    bench_worst_ktimes(k, merge_sort);
+    printf("===========================\n");
+    printf("Average case:\n");
+    bench_average_ktimes(k, merge_sort);
 
     gettimeofday(&stop, NULL);
     secs = (double)(stop.tv_usec - start.tv_usec) / 1000000 + (double)(stop.tv_sec - start.tv_sec);
