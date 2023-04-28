@@ -3,7 +3,7 @@ INCDIR=include
 TESTDIR=test
 OBJDIR=obj
 
-TESTFLAGS=-g3 -O3 \
+TESTFLAGS=
 	-fsanitize=address \
 	-fsanitize=undefined \
 	-fno-sanitize-recover=all \
@@ -11,15 +11,15 @@ TESTFLAGS=-g3 -O3 \
 	-fsanitize=float-cast-overflow
 
 CC=gcc
-CFLAGS=-std=c18 -Wall -Wpedantic -Werror -Wextra -I $(INCDIR) -g3 -O3
+CFLAGS=-std=c18 -Wall -Wpedantic -Werror -Wextra -I $(INCDIR)  -g3 -O0
 
 # build the project compiling all the source files from the src folder
 build: $(SRCDIR)/*.c
-	$(CC) $(CFLAGS) -o $(OBJDIR)/main $^
+	$(CC) $(CFLAGS) -o $(OBJDIR)/main $^ -lm
 
 # test the project compiling all the source files from the test folder
-tests: $(TESTDIR)/*.c
-	$(CC) $(CFLAGS) $(TESTFLAGS) -o $(OBJDIR)/test $^
+teste: $(filter-out src/main.c, $(wildcard src/*.c)) $(TESTDIR)/*.c
+	$(CC) $(CFLAGS) $(TESTFLAGS) -o $(OBJDIR)/test $^ -lm
 	./$(OBJDIR)/test
 
 # run the project
