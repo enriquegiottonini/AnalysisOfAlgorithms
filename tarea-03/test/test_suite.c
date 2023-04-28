@@ -3,7 +3,9 @@
 #include <stdlib.h>
 
 #include "fibonacci.h"
+#include "matrix.h"
 #include "polynomial.h"
+#include "sum.h"
 /*
 Cortesía de nuestro querido maestro de Estructura de Datos:
 Prof. Eduardo Acuña.
@@ -36,6 +38,32 @@ una prueba falla.
         fprintf(stderr, "\nError (%s:%d) " message "\n", __FILE__, __LINE__); \
         goto fail;                                                            \
     }
+
+int it_sums(void) {
+    int n = 10;
+    int *nums = (int *)malloc(n * sizeof(int));
+    for (int i = 0; i < n; i++)
+        nums[i] = i + 1;
+
+    int res = sum(nums, n);
+    check((res == 55), "Expected sum of 1..10 to be 55.");
+    return 1;
+fail:
+    printf("Got %d\n", res);
+    return 0;
+}
+
+int it_rsums(void) {
+    int n = 10;
+    int *nums = (int *)malloc(n * sizeof(int));
+    for (int i = 0; i < n; i++)
+        nums[i] = i + 1;
+
+    check((rsum(nums, n) == 55), "Expected sum of 1..10 to be 55.");
+    return 1;
+fail:
+    return 0;
+}
 
 int it_creates_vector(void) {
     int n = 3;
@@ -133,16 +161,79 @@ fail:
     return 0;
 }
 
+int it_creates_matrix(void) {
+    int n = 3;
+    int *mat = random_square_matrix(n);
+    check((mat != NULL), "Expected a valid matrix.");
+    if (mat != NULL)
+        free_matrix(mat);
+    return 1;
+
+fail:
+    if (mat != NULL)
+        free_matrix(mat);
+    return 0;
+}
+
+// i dont want to check if it is a valid algorithm
+
+int it_transposes(void) {
+    int n = 3;
+    int *mat = random_square_matrix(n);
+    int *mat_t = transpose(mat, n);
+    check((mat_t != NULL), "Expected a valid matrix.");
+
+    if (mat != NULL)
+        free_matrix(mat);
+    if (mat_t != NULL)
+        free_matrix(mat_t);
+    return 1;
+
+fail:
+    if (mat != NULL)
+        free_matrix(mat);
+    if (mat_t != NULL)
+        free_matrix(mat_t);
+    return 0;
+}
+
+int it_mults(void) {
+    int n = 3;
+    int *mat = random_square_matrix(n);
+    int *mat2 = mult(mat, mat, n);
+    check((mat2 != NULL), "Expected a valid matrix.");
+
+    if (mat != NULL)
+        free_matrix(mat);
+    if (mat2 != NULL)
+        free_matrix(mat2);
+    return 1;
+
+fail:
+    if (mat != NULL)
+        free_matrix(mat);
+    if (mat2 != NULL)
+        free_matrix(mat2);
+    return 0;
+}
+
 int main(void) {
-    printf("Testing polynomial evaluation...\n");
+    printf("\nTesting sums...\n");
+    run_test(it_sums);
+    run_test(it_rsums);
+    printf("\nTesting polynomial evaluation...\n");
     run_test(it_creates_vector);
     run_test(it_bruteforces);
     run_test(it_bruteforces_better);
     run_test(it_horners);
-    // run_test(it_benchs_polynomial_eval);
     printf("\nTesting recursive methods\n");
     run_test(it_recurs_fib);
     run_test(it_iters_fib);
     run_test(it_memos_fib);
+    printf("\nTesting matrix algorithms\n");
+    run_test(it_creates_matrix);
+    run_test(it_transposes);
+    run_test(it_mults);
+    printf("\nAll tests passed!\n");
     return 0;
 }

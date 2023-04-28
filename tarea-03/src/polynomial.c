@@ -100,13 +100,8 @@ void bench_polyevals(int iters, int factor, int experiments, int scale) {
 
     // matrix for saving results
     double **results = (double **)malloc(iters * sizeof(double *));
-    for (int i = 0; i < 5; i++)
-        results[i] = (double *)malloc(4 * sizeof(double));
-
-    printf("Benchmarking polynomial evaluation algorithms\n");
-    printf("Scale: %d\n", scale);
-    printf("Experiments: %d\n", experiments);
-    printf("N, Bruteforce_v0, Bruteforce_v1, Bruteforce_v2, Horner\n");
+    for (int j = 0; j < 5; j++)
+        results[j] = (double *)malloc(iters * sizeof(double));
 
     for (int i = 0; i < iters; i++) {
         coeffs = random_vector(N + 1);
@@ -124,9 +119,6 @@ void bench_polyevals(int iters, int factor, int experiments, int scale) {
         results[3][i] = r2 / experiments;
         results[4][i] = r3 / experiments;
 
-        printf("%d, %f, %f, %f, %f\n", (int)results[0][i], results[1][i],
-               results[2][i], results[3][i], results[4][i]);
-
         N += factor;
 
         if (coeffs != NULL)
@@ -136,10 +128,12 @@ void bench_polyevals(int iters, int factor, int experiments, int scale) {
 
     save_polynomial_results(results, iters, "benchmark_polynomials.csv");
 
+    for (int j = 0; j < 5; j++)
+        free(results[j]);
     free(results);
 }
 
-void save_polynomial_results(double **results, int iters, char *filename) {
+void save_polynomial_results(double **results, int rows, char *filename) {
     FILE *fp = fopen(filename, "w");
     if (fp == NULL) {
         printf("Error opening file\n");
@@ -147,8 +141,8 @@ void save_polynomial_results(double **results, int iters, char *filename) {
     }
 
     // write results to file
-    fprintf(fp, "N,Bruteforce_v0,Bruteforce_v1,Bruteforce_v2,Horner\n");
-    for (int i = 0; i < iters; i++) {
+    fprintf(fp, "N,bruteforce O(n^2), bruteforce O(nlog(n)), efficient bruteforce O(n), horner O(n)\n");
+    for (int i = 0; i < rows; i++) {
         fprintf(fp, "%d,%f,%f,%f,%f\n", (int)results[0][i], results[1][i],
                 results[2][i], results[3][i], results[4][i]);
     }

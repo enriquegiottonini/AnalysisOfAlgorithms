@@ -122,7 +122,7 @@ void save_fibonacci_results(double **results, int iters, char *filename) {
         exit(1);
     }
 
-    fprintf(fp, "N, recursive, iterative, memoized\n");
+    fprintf(fp, "N, recursive O(2^n), iterative O(n), memoized O(n)\n");
     for (int i = 0; i < iters; i++)
         fprintf(fp, "%d, %lf, %lf, %lf\n", (int)results[0][i], results[1][i], results[2][i], results[3][i]);
     fclose(fp);
