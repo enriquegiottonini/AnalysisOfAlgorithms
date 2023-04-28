@@ -2,6 +2,7 @@
 
 #include "fibonacci.h"
 #include "matrix.h"
+#include "perm.h"
 #include "polynomial.h"
 #include "sum.h"
 
@@ -46,12 +47,21 @@ void multiplication(void) {
     bench_matrix_multiplication(iters, factor, experiments, scale);
 }
 
+void permutations(void) {
+    int iters = 10;
+    int factor = 1;
+    int experiments = 10;
+    int scale = 10;
+    benchmark_perm(iters, factor, experiments, scale);
+}
+
 int main(void) {
     // polynomials();
     // fibonacci();
     // sums();
     // transposes();
-    multiplication();
+    // multiplication();
+    permutations();
 
     return 0;
 }

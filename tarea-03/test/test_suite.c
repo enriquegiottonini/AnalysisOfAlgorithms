@@ -4,6 +4,7 @@
 
 #include "fibonacci.h"
 #include "matrix.h"
+#include "perm.h"
 #include "polynomial.h"
 #include "sum.h"
 /*
@@ -217,6 +218,16 @@ fail:
     return 0;
 }
 
+int it_permutes(void) {
+    int n = 3;
+    int *vect = random_vecc(n);
+    perm(vect, 0, n);
+
+    if (vect != NULL)
+        free(vect);
+    return 1;
+}
+
 int main(void) {
     printf("\nTesting sums...\n");
     run_test(it_sums);
@@ -234,6 +245,8 @@ int main(void) {
     run_test(it_creates_matrix);
     run_test(it_transposes);
     run_test(it_mults);
+    printf("\nTesting permutation algorithms\n");
+    run_test(it_permutes);
     printf("\nAll tests passed!\n");
     return 0;
 }
