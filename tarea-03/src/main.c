@@ -2,8 +2,10 @@
 
 #include "fibonacci.h"
 #include "matrix.h"
+#include "misc.h"
 #include "perm.h"
 #include "polynomial.h"
+#include "search.h"
 #include "sum.h"
 
 void polynomials(void) {
@@ -11,7 +13,7 @@ void polynomials(void) {
     int iters = 20;
     int factor = 500;
     int experiments = 100;
-    int scale = 10;
+    int scale = 1;
     bench_polyevals(iters, factor, experiments, scale);
 }
 
@@ -55,13 +57,31 @@ void permutations(void) {
     benchmark_perm(iters, factor, experiments, scale);
 }
 
+void search(void) {
+    int iters = 10;
+    int factor = 100;
+    int experiments = 100;
+    int scale = 1000;
+    benchmark_search(iters, factor, experiments, scale);
+}
+
+void magic_square(void) {
+    int iters = 1;
+    int factor = 3;
+    int experiments = 1;
+    int scale = 1;
+    benchmark_Magic(iters, factor, experiments, scale);
+}
+
 int main(void) {
-    // polynomials();
+    polynomials();
     // fibonacci();
     // sums();
     // transposes();
     // multiplication();
-    permutations();
+    // permutations();
+    // search();
+    magic_square();
 
     return 0;
 }

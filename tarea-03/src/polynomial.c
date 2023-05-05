@@ -103,6 +103,7 @@ void bench_polyevals(int iters, int factor, int experiments, int scale) {
     for (int j = 0; j < 5; j++)
         results[j] = (double *)malloc(iters * sizeof(double));
 
+    printf("N,bruteforce_v0,bruteforce_v1,bruteforce_v2,horner\n");
     for (int i = 0; i < iters; i++) {
         coeffs = random_vector(N + 1);
         x = irand();
@@ -115,9 +116,11 @@ void bench_polyevals(int iters, int factor, int experiments, int scale) {
         }
         results[0][i] = (i + 1) * factor;
         results[1][i] = r0 / experiments;
-        results[2][i] = r1 / experiments;
-        results[3][i] = r2 / experiments;
-        results[4][i] = r3 / experiments;
+        results[2][i] = r1 / experiments * 100;
+        results[3][i] = r2 / experiments * 100;
+        results[4][i] = r3 / experiments * 100;
+
+        printf("%d,%f,%f,%f,%f\n", N, r0 / experiments, r1 / experiments, r2 / experiments, r3 / experiments);
 
         N += factor;
 

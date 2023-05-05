@@ -47,7 +47,7 @@ void bench_sums(int iters, int factor, int experiments, int scale) {
     double r1, r2;
 
     // matrix for storing results
-    double **results = (double **)malloc(experiments * sizeof(double *));
+    double **results = (double **)malloc(3 * sizeof(double *));
     for (int i = 0; i < 3; i++)
         results[i] = (double *)malloc(iters * sizeof(double));
 
